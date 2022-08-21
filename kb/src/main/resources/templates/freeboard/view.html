@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<div layout:fragment="content" class="p-3">
+  <h1>freeboard</h1>
+  <strong>dropdown > view</strong>
+  <div class="d-flex justify-content-center">
+    <div class="w-100 p-3" style="color:black;">
+      <h3>글쓰기</h3>
+      <label class="form-label">title</label>
+      <div class="mb-3 text-center">
+        <h4 th:text="${freeboard.title}"></h4>
+      </div>
+      <div class="mb-3">
+        <p class="p-3" style="min-height:300px;background-color:#efefef; border-radius:5px;" th:text="${freeboard.content}"></p>
+      </div>
+<!--      <div class="mb-3 w-50" th:if="${!#strings.isEmpty(freeboard.filename)}">-->
+<!--        <img th:src="@{${'/img/' + freeboard.filename}}" style="width:100%;">-->
+<!--      </div>-->
+    </div>
+  </div>
+
+  <div class="m-3">
+    <a class="btn btn-secondary" href="/freeboard">목록</a>
+    <a class="btn btn-secondary" th:href="@{/freeboard/delete(id=${freeboard.id})}">삭제</a>
+    <a class="btn btn-secondary" th:href="@{/freeboard/write(id=${freeboard.id})}">수정</a>
+  </div>
+
+<!--  <div>-->
+<!--    <div th:each="freeboardtail : ${freeboard.list}">-->
+<!--      <div>-->
+<!--        작성자<span th:text="${freeboardtail.t_name}"></span>-->
+<!--        내용<span th:text="${freeboardtail.t_content}"></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div>-->
+<!--    <h3>댓글...</h3>-->
+<!--    <form method="post">-->
+<!--      <input type="hidden" name="id" th:value="${freeboard.id}">-->
+<!--      <div>-->
+<!--        작성자 <input class="form-control" type="text" name="t_name">-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        내용-->
+<!--        <textarea name="t_content" class="form-control"></textarea>-->
+<!--      </div>-->
+<!--      <div class="m-3">-->
+<!--        <input class="btn btn-secondary" type="submit" value="작성">-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+</html>
