@@ -9,8 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -67,12 +71,28 @@ public class FreeboardController {
 
     @PostMapping("freeboard/write")
     public String pwrite(@Valid FreeboardReq freeboardReq,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         @RequestParam("file") MultipartFile file) {
+        //html에서 id="file" 인 post된 인자를 전달받음
 
         if(bindingResult.hasErrors()) {
             return "freeboard/write";
         }
+        //파일이름 가져오기
+        String filename = file.getOriginalFilename();
 
+        //파일 static 폴더안에 저장하기
+        File savefile = new File("C:/Users/15/Desktop/Freeboard_practice" +
+                "kb/src/main/resource/sstatic/img/"+filename);
+
+        //file.transferTo()는 예외를 발생 시킬 수 있으므로 transfer로 감싸야함
+        try {
+            file.transferTo(savefile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            //예외가 발생하게 되면 write화면으로 넘겨줌
+            return "freeboard/write";
+        }
 
         freeboardService.create(
                 Freeboard.builder().
@@ -87,6 +107,7 @@ public class FreeboardController {
         return "redirect:/freeboard";
     }
     //----------------------------write-----------------------------//
+
 
 
 }
