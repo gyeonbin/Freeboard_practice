@@ -23,8 +23,8 @@
 
   <div class="m-3">
     <a class="btn btn-secondary" href="/freeboard">목록</a>
-    <a class="btn btn-secondary" th:href="@{/freeboard/delete(id=${freeboard.id})}">삭제</a>
-    <a class="btn btn-secondary" th:href="@{/freeboard/write(id=${freeboard.id})}">수정</a>
+    <a class="btn btn-secondary" th:href="@{/freeboard/delete(id=${freeboard.index})}">삭제</a>
+    <a class="btn btn-secondary" th:href="@{/freeboard/write(id=${freeboard.index})}">수정</a>
   </div>
 
 <!--  <div>-->
@@ -53,5 +53,5 @@
 <!--    </form>-->
 <!--  </div>-->
 <!--</div>-->
-
+</div>
 </html>

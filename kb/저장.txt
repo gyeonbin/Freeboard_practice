@@ -1,0 +1,18 @@
+@PostMapping("freeboard/write")
+    public String pwrite(@Valid FreeboardReq freeboardReq, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "freeboard/write";
+        }
+        freeboardService.create(
+                Freeboard.builder().
+                        title(freeboardReq.getTitle()).
+                        content(freeboardReq.getFilename()).
+                        filename(freeboardReq.getFilename()).
+                        hits(1).
+                        regdate(LocalDateTime.now()).
+                        build()
+        );
+
+
+        return "redirect:/freeboard";
+    }

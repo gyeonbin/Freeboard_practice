@@ -1,12 +1,18 @@
 package com.home.org.kb.controller;
 
 import com.home.org.kb.entity.Freeboard;
+import com.home.org.kb.req.FreeboardReq;
 import com.home.org.kb.service.FreeboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,14 +51,47 @@ public class FreeboardController {
     }
 
     @GetMapping("freeboard/view")
-    public String view(Model model, Long id) { //제목링크 눌러서 전달된 id가 여기 id로 들어옴
+    public String view(Model model, long id) {
+        //제목링크 눌러서 전달된 id가 여기 id로 들어옴
 
         //bring_table안에 hits 올려주는 함수 있음
         Freeboard freeboard = freeboardService.bring_table(id);
-        model.addAttribute(freeboard);
+        model.addAttribute("freeboard",freeboard);
 
         return "freeboard/view";
     }
+
+
+
+    //----------------------------write-----------------------------//
+    @GetMapping("freeboard/write")
+    public String write(FreeboardReq freeboardReq){
+        return "freeboard/write";
+    }
+
+    @PostMapping("freeboard/write")
+    public String pwrite(@Valid FreeboardReq freeboardReq, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "freeboard/write";
+        }
+        freeboardService.create(
+                Freeboard.builder().
+                        title(freeboardReq.getTitle()).
+                        content(freeboardReq.getContent()).
+                        filename(freeboardReq.getFilename()).
+                        hits(0).
+                        regdate(LocalDateTime.now()).
+                        build()
+        );
+
+
+        return "redirect:/freeboard";
+    }
+
+    //----------------------------write-----------------------------//
+
+
+
 
 
 }
