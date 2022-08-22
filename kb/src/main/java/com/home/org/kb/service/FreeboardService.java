@@ -33,6 +33,7 @@ public class FreeboardService {
 
         //hits 수 올리고 return해줌
         freeboard.setHits(freeboard.getHits()+1);
+        freeboardRepository.save(freeboard);
         return freeboard;
     }
 

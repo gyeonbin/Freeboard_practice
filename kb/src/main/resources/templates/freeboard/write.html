@@ -11,12 +11,23 @@
         <h3>글쓰기</h3>
         <div class="mb-3">
           <label for="title" class="form-label">title</label>
-          <input type="text" class="form-control" id="title" name="title" th:field="*{title}" placeholder="title">
+          <input type="text" class="form-control" id="title" name="title"
+                 th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'" th:field="*{title}" placeholder="title">
+          <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+            not empty
+          </div>
         </div>
+
         <div class="mb-3">
           <label for="content" class="form-label">content</label>
-          <textarea class="form-control" id="content" name="content" rows="10" th:field="*{content}"></textarea>
+          <textarea class="form-control" id="content" name="content" rows="10" th:field="*{content}"
+                    th:classappend="${#fields.hasErrors('content')} ? 'is-invalid'"></textarea>
+          <div th:if="${#fields.hasErrors('content')}" class="invalid-feedback">
+            not empty
+          </div>
         </div>
+
+
         <div class="mb-3 w-25">
           <label for="file" class="form-label">file upload</label>
           <input class="form-control" type="file" id="file" name="file">

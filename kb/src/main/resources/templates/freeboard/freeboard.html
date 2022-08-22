@@ -35,7 +35,6 @@
             <tbody>
             <tr th:each="aa:${list}">
                 <th scope="row" th:text="${aa.index}">id컬럼</th>
-<!--                이거 백엔드에서 어떻게 받냐....-->
                 <td><a href="#" th:href="@{/freeboard/view(id=${aa.index})}" th:text="${aa.title}"></a></td>
                 <td th:text="${aa.hits}">조회수</td>
                 <td th:text="${aa.filename}">파일이름</td>

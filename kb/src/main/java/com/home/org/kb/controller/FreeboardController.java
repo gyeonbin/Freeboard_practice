@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -61,8 +59,6 @@ public class FreeboardController {
         return "freeboard/view";
     }
 
-
-
     //----------------------------write-----------------------------//
     @GetMapping("freeboard/write")
     public String write(FreeboardReq freeboardReq){
@@ -70,10 +66,14 @@ public class FreeboardController {
     }
 
     @PostMapping("freeboard/write")
-    public String pwrite(@Valid FreeboardReq freeboardReq, BindingResult bindingResult){
+    public String pwrite(@Valid FreeboardReq freeboardReq,
+                         BindingResult bindingResult) {
+
         if(bindingResult.hasErrors()) {
             return "freeboard/write";
         }
+
+
         freeboardService.create(
                 Freeboard.builder().
                         title(freeboardReq.getTitle()).
@@ -84,14 +84,9 @@ public class FreeboardController {
                         build()
         );
 
-
         return "redirect:/freeboard";
     }
-
     //----------------------------write-----------------------------//
-
-
-
 
 
 }
