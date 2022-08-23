@@ -27,32 +27,5 @@
         <a class="btn btn-secondary" th:href="@{/freeboard/delete(id=${freeboard.index})}">삭제</a>
         <a class="btn btn-secondary" th:href="@{/freeboard/write(id=${freeboard.index})}">수정</a>
     </div>
-
-    <!--  <div>-->
-    <!--    <div th:each="freeboardtail : ${freeboard.list}">-->
-    <!--      <div>-->
-    <!--        작성자<span th:text="${freeboardtail.t_name}"></span>-->
-    <!--        내용<span th:text="${freeboardtail.t_content}"></span>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-
-    <!--  <div>-->
-    <!--    <h3>댓글...</h3>-->
-    <!--    <form method="post">-->
-    <!--      <input type="hidden" name="id" th:value="${freeboard.id}">-->
-    <!--      <div>-->
-    <!--        작성자 <input class="form-control" type="text" name="t_name">-->
-    <!--      </div>-->
-    <!--      <div>-->
-    <!--        내용-->
-    <!--        <textarea name="t_content" class="form-control"></textarea>-->
-    <!--      </div>-->
-    <!--      <div class="m-3">-->
-    <!--        <input class="btn btn-secondary" type="submit" value="작성">-->
-    <!--      </div>-->
-    <!--    </form>-->
-    <!--  </div>-->
-    <!--</div>-->
 </div>
 </html>

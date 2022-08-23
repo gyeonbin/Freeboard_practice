@@ -38,10 +38,15 @@ public class FreeboardService {
     }
 
 
+    public Freeboard bring_table_no_hits(long index) {
+        Freeboard freeboard =
+                freeboardRepository.findById(index).orElse(new Freeboard());
 
+        freeboardRepository.save(freeboard);
+        return freeboard;
+    }
 
-
-
-
-
+    public void delete(Long index) {
+        freeboardRepository.deleteById(index);
+    }
 }
